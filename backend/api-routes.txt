@@ -1,0 +1,106 @@
+# API Endpoints (REST Routes)
+
+## Authentication Routes
+### POST Routes
+- POST /api/auth/login - Login user
+
+## Admin Routes
+### GET Routes
+- GET /api/admin/stats - Get dashboard statistics
+- GET /api/admin/dashboard-stats - Get dashboard statistics
+- GET /api/admin/doctors - Get all doctors
+- GET /api/admin/patients - Get all patients
+- GET /api/admin/credentials - Get all users for credential management
+
+### POST Routes
+- POST /api/admin/doctors - Create new doctor
+- POST /api/admin/patients - Create new patient
+- POST /api/admin/assign-patient - Assign patient to doctor
+
+### PUT Routes
+- PUT /api/admin/doctors/:id - Update doctor
+- PUT /api/admin/patients/:id - Update patient
+- PUT /api/admin/credentials - Update user credentials
+
+### DELETE Routes
+- DELETE /api/admin/doctors/:id - Delete doctor (soft delete)
+- DELETE /api/admin/patients/:id - Delete patient (soft delete)
+
+## Appointment Routes
+### GET Routes
+- GET /api/appointments - Get all appointments
+- GET /api/appointments/upcoming - Get upcoming appointments
+- GET /api/appointments/date-range - Get appointments by date range
+- GET /api/appointments/:id - Get specific appointment
+
+### POST Routes
+- POST /api/appointments - Create new appointment
+
+### PUT Routes
+- PUT /api/appointments/:id - Update appointment
+
+### DELETE Routes
+- DELETE /api/appointments/:id - Delete appointment
+
+## Doctor Routes
+### GET Routes
+- GET /api/doctors - Get all doctors
+- GET /api/doctors/:id - Get specific doctor
+- GET /api/doctors/:id/patients - Get doctor's patients
+
+### POST Routes
+- POST /api/doctors - Create new doctor
+
+### PUT Routes
+- PUT /api/doctors/:id - Update doctor profile
+- PUT /api/doctors/:id/availability - Update doctor availability
+
+## Patient Routes
+### GET Routes
+- GET /api/patients - Get all patients
+- GET /api/patients/:id - Get specific patient
+- GET /api/patients/:id/health-records - Get patient's health records
+- GET /api/patients/:id/appointments - Get patient's appointments
+
+### POST Routes
+- POST /api/patients - Create new patient
+- POST /api/patients/:id/health-records - Add health record
+
+### PUT Routes
+- PUT /api/patients/:id - Update patient
+- PUT /api/patients/:id/doctor - Update patient's assigned doctor
+
+### DELETE Routes
+- DELETE /api/patients/:id - Delete patient (soft delete)
+
+## Authorization Details
+Most routes require authentication using JWT tokens and have role-based access:
+- Admin routes: Requires "Admin" role
+- Doctor routes: Requires "Doctor" role or "Admin" role
+- Patient routes: Requires patient ownership or "Admin"/"Doctor" role
+
+## Common Query Parameters
+1. Search and Filtering:
+   - search: Text search in name/email/username
+   - category: Filter by patient category
+   - specialization: Filter by doctor specialization
+   - status: Filter by status (active/inactive)
+   
+2. Pagination:
+   - page: Page number
+   - limit: Items per page
+   
+3. Sorting:
+   - sortBy: Field to sort by
+   - order: asc/desc
+
+## Response Format
+All endpoints follow a consistent response format:
+```json
+{
+  "success": true/false,
+  "data": {...} or [...],
+  "message": "Success/error message",
+  "count": total_items (for list endpoints)
+}
+```

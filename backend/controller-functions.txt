@@ -1,0 +1,135 @@
+# Controller Functions Overview
+
+## 1. Admin Controller (adminController.js)
+- getDashboardStats()
+  * Gets statistics for admin dashboard
+  * Counts doctors, patients, appointments
+  * Categorizes by specializations and patient types
+
+- createDoctor()
+  * Creates new doctor profile
+  * Validates required fields
+  * Checks for duplicate email/username
+
+- getAllDoctors()
+  * Lists all active doctors
+  * Filters by specialization
+  * Supports search functionality
+  * Populates patient relationships
+
+- updateDoctor()
+  * Updates doctor information
+  * Validates email/username uniqueness
+  * Updates credentials if provided
+
+- deleteDoctor()
+  * Soft deletes doctor (sets isActive: false)
+  * Removes doctor assignments from patients
+
+- createPatient()
+  * Creates new patient profile
+  * Validates required fields
+  * Handles doctor assignment
+
+- getAllPatients()
+  * Lists all active patients
+  * Filters by category
+  * Supports search functionality
+  * Populates doctor relationships
+
+- updatePatient()
+  * Updates patient information
+  * Handles doctor reassignment
+  * Validates email/username uniqueness
+
+- deletePatient()
+  * Soft deletes patient
+  * Removes from doctor's patient list
+
+- assignPatientToDoctor()
+  * Assigns patient to a doctor
+  * Updates both patient and doctor records
+
+- updateCredentials()
+  * Updates username/password
+  * Works for both doctors and patients
+
+- getAllUsersForCredentials()
+  * Lists all users for credential management
+  * Combines doctor and patient lists
+
+## 2. Doctor Controller (doctorController.js)
+- createDoctor()
+  * Creates new doctor profile
+  * Similar to admin's createDoctor
+
+- getDoctors()
+  * Lists all active doctors
+  * Includes filtering and search
+  * Populates patient relationships
+
+- getDoctorById()
+  * Retrieves single doctor details
+  * Includes assigned patients
+
+- updateDoctor()
+  * Updates doctor profile
+  * Validates unique fields
+
+- deleteDoctor()
+  * Soft deletes doctor
+  * Updates patient assignments
+
+## 3. Patient Controller (patientController.js)
+- createPatient()
+  * Creates new patient profile
+  * Handles doctor assignment
+
+- getPatients()
+  * Lists all active patients
+  * Filters by category and doctor
+  * Supports search
+
+- getPatientById()
+  * Retrieves single patient details
+  * Includes assigned doctor info
+
+- updatePatient()
+  * Updates patient information
+  * Handles doctor reassignment
+
+- deletePatient()
+  * Soft deletes patient
+  * Updates doctor's patient list
+
+- addHealthRecord()
+  * Adds new health record to patient
+  * Includes diagnosis and treatment
+
+- getPatientHealthRecords()
+  * Retrieves patient's health history
+  * Sorts by date
+
+Key Features Across Controllers:
+1. Soft Delete Pattern
+   - Uses isActive flag instead of actual deletion
+   - Preserves data integrity and history
+
+2. Relationship Management
+   - Maintains doctor-patient relationships
+   - Updates both sides of relationships
+
+3. Data Validation
+   - Checks for required fields
+   - Validates unique constraints
+   - Verifies relationships
+
+4. Search and Filter
+   - Supports text search
+   - Category/specialization filtering
+   - Active status filtering
+
+5. Security
+   - Password handling
+   - Credential management
+   - Data access control

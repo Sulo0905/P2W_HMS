@@ -1,0 +1,59 @@
+# All Mongoose Queries in Healthcare Management System
+
+## Database Connection (config/*.js)
+- mongoose.connect(mongoURI, {...})
+- mongoose.connection.db.listCollections().toArray()
+
+## Admin Controller (adminController.js)
+### Doctor Management
+- Doctor.findOne({ email, username }) // Check if doctor exists
+- Doctor.create({...}) // Create new doctor
+- Doctor.find(filter) // Get all doctors
+- Doctor.findById(id) // Get single doctor
+- Doctor.findOne({ email, _id: { $ne: id }}) // Check email uniqueness
+- Doctor.findOne({ username, _id: { $ne: id }}) // Check username uniqueness
+- doctor.save() // Save doctor changes
+- Doctor.findByIdAndUpdate(id, {...}) // Update doctor
+
+### Patient Management
+- Patient.findOne({...}) // Check if patient exists
+- Patient.create({...}) // Create new patient
+- Patient.find(filter) // Get all patients
+- Patient.findById(id) // Get single patient
+- Patient.updateMany({...}) // Bulk update patients
+- Patient.findOne({ email, _id: { $ne: id }}) // Check email uniqueness
+- Patient.findOne({ username, _id: { $ne: id }}) // Check username uniqueness
+
+## AI Interaction Controller (aiInteractionController.js)
+- interaction.save() // Save new interaction
+- AIInteraction.find().populate("userId") // Get all interactions
+- AIInteraction.findById(id).populate("userId") // Get single interaction
+- AIInteraction.findByIdAndUpdate(id, {...}) // Update interaction
+- AIInteraction.findByIdAndDelete(id) // Delete interaction
+
+## Appointment Controller (appointmentController.js)
+### Appointment Operations
+- Patient.findById(patient) // Verify patient exists
+- Doctor.findById(doctor) // Verify doctor exists
+- Appointment.findOne({...}) // Check conflicting appointments
+- Appointment.create({...}) // Create new appointment
+- Appointment.findById(id) // Get single appointment
+- Appointment.find(filter) // Get filtered appointments
+- appointment.save() // Save appointment changes
+- Appointment.find({ status: "pending" }) // Get pending appointments
+- Appointment.findById(id).populate("patient doctor") // Get appointment with relations
+
+Common Patterns:
+1. CREATE: Model.create({...})
+2. READ: 
+   - Model.find({...}) // Multiple documents
+   - Model.findById(id) // Single document by ID
+   - Model.findOne({...}) // Single document by criteria
+3. UPDATE:
+   - document.save() // Update single document
+   - Model.findByIdAndUpdate(id, {...}) // Update by ID
+   - Model.updateMany({...}) // Bulk update
+4. DELETE:
+   - Model.findByIdAndDelete(id) // Delete by ID
+
+Note: Most queries use await since they're asynchronous operations. Many queries also use population (populate()) to include related document data.

@@ -1,0 +1,30 @@
+# All Mongoose Queries in Project
+
+## config/database.js
+- mongoose.connect(mongoURI, {...})
+- mongoose.connection.db.listCollections().toArray()
+- mongoose.connect(process.env.MONGODB_URI_LOCAL, {...})
+
+## config/db.js
+- mongoose.connect(process.env.MONGO_URI, {...})
+
+## controllers/adminController.js
+- Doctor.findOne({ ... })
+- Doctor.create({ ... })
+- Doctor.find(filter)
+- Doctor.findById(req.params.id)
+- Doctor.findOne({ email, _id: { $ne: req.params.id } })
+- Doctor.findOne({ username, _id: { $ne: req.params.id } })
+- doctor.save()
+- Doctor.findById(req.params.id)
+- doctor.save()
+- Patient.updateMany(...)
+- Patient.findOne({ ... })
+- Doctor.findById(assignedDoctor)
+- Patient.create({ ... })
+- Doctor.findByIdAndUpdate(...)
+- Patient.find(filter)
+- Patient.findById(req.params.id)
+- Patient.findOne({ email, _id: { $ne: req.params.id } })
+
+# (Other files may contain more queries. This list is based on the most common patterns found.)

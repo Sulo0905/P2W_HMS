@@ -1,0 +1,113 @@
+# Controller Classes Overview
+
+## 1. Admin Controller (adminController.js)
+- Manages doctor and patient creation/management
+- Handles doctor assignments
+- Admin-specific operations
+Main operations:
+- Create/Read/Update/Delete doctors
+- Create/Read/Update/Delete patients
+- Assign doctors to patients
+
+## 2. AI Interaction Controller (aiInteractionController.js)
+- Manages AI-based interactions
+- Stores and retrieves AI conversation history
+Main operations:
+- Save AI interactions
+- Retrieve interaction history
+- Update/Delete interactions
+
+## 3. Appointment Controller (appointmentController.js)
+- Manages medical appointments
+- Handles scheduling and appointment status
+Main operations:
+- Create new appointments
+- Check for conflicting appointments
+- Update appointment status
+- Get appointments by doctor/patient
+- Handle appointment cancellations
+
+## 4. Auth Controller (authController.js)
+- Handles user authentication
+- Manages login/logout processes
+Main operations:
+- User login
+- Token generation
+- Authentication checks
+
+## 5. Care Plan Controller (carePlanController.js)
+- Manages patient care plans
+- Handles treatment plans and medical procedures
+Main operations:
+- Create/Update care plans
+- Track treatment progress
+- Manage medical procedures
+
+## 6. Doctor Controller (doctorController.js)
+- Handles doctor-specific operations
+- Manages doctor profiles and schedules
+Main operations:
+- Update doctor profiles
+- Manage doctor availability
+- Handle doctor-patient relationships
+
+## 7. Health Log Controller (healthLogController.js)
+- Manages patient health records
+- Tracks medical history and progress
+Main operations:
+- Create health records
+- Update patient progress
+- Track medical history
+
+## 8. Multi Auth Controller (multiAuthController.js)
+- Handles multi-role authentication
+- Manages different user type logins
+Main operations:
+- Role-based authentication
+- Multi-user type handling
+- Role-specific access control
+
+## 9. Patient Controller (patientController.js)
+- Manages patient-specific operations
+- Handles patient records and profiles
+Main operations:
+- Update patient profiles
+- Manage patient records
+- Handle patient-specific requests
+
+## 10. User Controller (userController.js)
+- Basic user operations
+- Common user functionalities
+Main operations:
+- User profile management
+- Basic user CRUD operations
+
+## 11. User CRUD Controller (userCrudController.js)
+- Generic user operations
+- Basic Create/Read/Update/Delete operations
+Main operations:
+- Create users
+- Read user data
+- Update user information
+- Delete users
+
+## 12. User Management Controller (userManagementController.js)
+- Advanced user management
+- User role and permission handling
+Main operations:
+- Manage user roles
+- Handle user permissions
+- Advanced user operations
+
+File Organization:
+- All controllers are in the /controllers directory
+- Each controller has its own specific route file in /routes
+- Models referenced by controllers are in /models
+- Authentication middleware used by controllers is in /middlewares
+
+Controller Design Patterns:
+1. RESTful API design
+2. Async/Await pattern for database operations
+3. Error handling with try-catch blocks
+4. Middleware integration for authentication
+5. Separation of concerns (each controller has specific responsibility)
